@@ -1,0 +1,57 @@
+services:
+  redis-cluster-node-0:
+    image: redis:6-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "9079:6379"
+    volumes:
+      - ${PWD}/conf:/usr/local/etc/redis/
+
+  redis-cluster-node-1:
+    image: redis:6-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "9080:6379"
+    volumes:
+      - ${PWD}/conf:/usr/local/etc/redis/
+
+  redis-cluster-node-2:
+    image: redis:6-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "9081:6379"
+    volumes:
+      - ${PWD}/conf:/usr/local/etc/redis/
+
+  redis-cluster-node-3:
+    image: redis:6-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "9082:6379"
+    volumes:
+      - ${PWD}/conf:/usr/local/etc/redis/
+
+  redis-cluster-node-4:
+    image: redis:6-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "9083:6379"
+    volumes:
+      - ${PWD}/conf:/usr/local/etc/redis/
+
+  redis-cluster-node-5:
+    image: redis:6-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "9084:6379"
+    volumes:
+      - ${PWD}/conf:/usr/local/etc/redis/
+
+  redis-cluster-configure:
+    image: redis:6-alpine
+    command: /usr/local/etc/redis/create-cluster.sh
+    depends_on:
+      - redis-cluster-node-0
+      - redis-cluster-node-1
+    volumes:
+      - ${PWD}/conf:/usr/local/etc/redis
